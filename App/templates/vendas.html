@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Vendas</title>
+</head>
+<body>
+    <div class="container-xxl my-md-4 bd-layout">
+        <main style="padding: 5px;">
+          {% include 'partials/navegacao.html' %}
+          <h1 style="font-size: 100PX;">VENDAS!</h1>
+          <div>
+            <h2>Receita para o mês de agora: <spam style="color: green;">{{receita_atual}}R$</spam></h2>
+          </div>
+          <div class="text-end">
+            <button style="padding: 20px;" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#criar">Criar Novo</button>
+          </div>
+          {%include 'partials/venda/modal_criar.html'%}
+            <div style="gap: 10px; margin: 10px;" class="d-flex justify-content-start flex-wrap">
+              {% for venda in vendas %}
+                  <div style="padding: 10px;" class="card col-2 container d-flex justify-content-center align-items-center">
+                    <img style="width: 100%; margin: 5px; border-radius: 5px;" src="https://img.freepik.com/vetores-gratis/ilustracoes-de-gradiente-lo-fi_52683-82981.jpg?size=626&ext=jpg&ga=GA1.1.1642706694.1711646223&semt=ais" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <div>
+                        <h3 class="card-title fs-5">{{venda.cliente}}</h3>
+                        <p class="card-text">{{venda.referencia}} <span style="font-weight: bold;">x{{venda.quantidade}}</span></p>
+                        <samp class="fs-3">{{venda.total}}R$<p style="font-size: 15px;" aria-label="Close">em {{venda.parcelas}}x</p></samp>
+                      </div>
+                      <div class="text-center">
+                        <a href="{% url 'deletar_venda' venda.id %}" type="button" class="btn btn-danger">Excluir</a>
+                        <a type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editar_{{venda.id}}" data-bs-whatever="">Editar</a>
+                      </div>
+                      {%include 'partials/venda/modal_editar.html'%}
+                    </div>
+                  </div>
+              {% endfor %}
+            </div>
+        </main>
+      </div>
+    
+      <script type="text/javascript">
+          var criar_produto = document.getElementById('criar_produto')
+          criar_produto.addEventListener('show.bs.modal', function (event) {
+          // Button that triggered the modal
+          var button = event.relatedTarget
+          // Extract info from data-bs-* attributes
+          var recipient = button.getAttribute('data-bs-whatever')
+          // If necessary, you could initiate an AJAX request here
+          // and then do the updating in a callback.
+          //
+          // Update the modal's content.
+          var modalTitle = exampleModal.querySelector('.modal-title')
+          var modalBodyInput = exampleModal.querySelector('.modal-body input')
+    
+          modalTitle.textContent = 'New message to ' + recipient
+          modalBodyInput.value = recipient
+          })
+    
+          // Obtém o campo de entrada
+          var campoNumero = document.getElementById('valoraquisicao_criar');
+    
+          // Adiciona um listener para o evento input
+          campoNumero.addEventListener('input', function(event) {
+              // Obtém o valor inserido pelo usuário
+              var valor = event.target.value;
+    
+              // Verifica se o valor não é um número
+              if (isNaN(valor)) {
+                  // Se não for um número, limpa o campo
+                  event.target.value = '';
+              }
+          });
+          // Obtém o campo de entrada
+          var campoNumero = document.getElementById('quantidade');
+    
+          // Adiciona um listener para o evento input
+          campoNumero.addEventListener('input', function(event) {
+              // Obtém o valor inserido pelo usuário
+              var valor = event.target.value;
+    
+              // Verifica se o valor não é um número
+              if (isNaN(valor)) {
+                  // Se não for um número, limpa o campo
+                  event.target.value = '';
+              }
+          });
+          // Obtém o campo de entrada
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>        
+</body>
+</html>

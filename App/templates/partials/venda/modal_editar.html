@@ -1,0 +1,88 @@
+<div class="modal fade" id="editar_{{venda.id}}" tabindex="-1" aria-labelledby="editar_{{venda.id}}" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="form_editar_{{venda.id}}" action="{% url 'editar_venda' venda.id %}" method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="referencia" class="col-form-label">Referência:</label>
+            <select name="referencia" class="form-select" id="referencia" aria-label="Default select example" required>
+              <option value="" >Selecione um código</option>
+              {% for produto in produtos %}
+                <option value="{{ produto.referencia }}" {% if produto.referencia == venda.referencia %} selected {% endif %}>{{ produto.referencia }} - {{ produto.descricao }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="cliente" class="col-form-label">Cliete:</label>
+            <input  name="cliente" value="{{venda.cliente}}" class="form-control" type="text" id="cliente" placeholder="João Aquino Mota" required>
+          </div>
+          <div class="mb-3">
+            <label for="tamanho" class="col-form-label">Tamanho:</label>
+            <select name="tamanho" class="form-select" id="tamanho" aria-label="Default select example">
+              <option value="P" {% if venda.tamanho == "P" %} selected {% endif %}>P</option>
+              <option value="M" {% if venda.tamanho == "M" %} selected {% endif %}>M</option>
+              <option value="G" {% if venda.tamanho == "G" %} selected {% endif %}>G</option>
+              <option value="GG" {% if venda.tamanho == "GG" %} selected {% endif %}>GG</option>
+          </select>
+          
+          </div>
+          <div class="mb-3">
+            <label for="quantidade" class="col-form-label">Quantidade:</label>
+            <input name="quantidade" value="{{venda.quantidade}}" class="form-control" type="text" id="quantidade" placeholder="0" required>
+          </div>
+          <div class="mb-3">
+            <label for="parcelas" class="col-form-label">parcelas:</label>
+            <select name="parcelas" class="form-select" id="parcelas" aria-label="Default select example">
+              <option value="1" {% if venda.parcelas == 1 %} selected {% endif %}>1x</option>
+              <option value="2" {% if venda.parcelas == 2 %} selected {% endif %}>2x</option>
+              <option value="3" {% if venda.parcelas == 3 %} selected {% endif %}>3x</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="desconto" class="col-form-label">Desconto</label>
+            <input  name="desconto" value="{{venda.desconto}}" class="form-control" type="text" id="desconto" placeholder="0.05" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button form="form_editar_{{venda.id}}" type="submit" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>  
+
+<script>
+    var campoNumero = document.getElementById('form_valoraquisicao_editar_{{venda.id}}');
+
+    // Adiciona um listener para o evento input
+    campoNumero.addEventListener('input', function(event) {
+        // Obtém o valor inserido pelo usuário
+        var valor = event.target.value;
+
+        // Verifica se o valor não é um número
+        if (isNaN(valor)) {
+            // Se não for um número, limpa o campo
+            event.target.value = '';
+        }
+    });
+    // Obtém o campo de entrada
+    var campoNumero = document.getElementById('form_quantidade_{{venda.id}}');
+
+    // Adiciona um listener para o evento input
+    campoNumero.addEventListener('input', function(event) {
+        // Obtém o valor inserido pelo usuário
+        var valor = event.target.value;
+
+        // Verifica se o valor não é um número
+        if (isNaN(valor)) {
+            // Se não for um número, limpa o campo
+            event.target.value = '';
+        }
+    });
+</script>

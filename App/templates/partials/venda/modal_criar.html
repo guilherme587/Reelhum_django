@@ -1,0 +1,57 @@
+<div class="modal fade" id="criar" tabindex="-1" aria-labelledby="criar" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="form_criar" action="{% url 'criar_venda' %}" method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="referencia" class="col-form-label">Referência:</label>
+            <select name="referencia" class="form-select" id="referencia" aria-label="Default select example" required>
+              <option value="" >Selecione um código</option>
+              {% for produto in produtos %}
+                <option value="{{ produto.referencia }}">{{ produto.referencia }} - {{ produto.descricao }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="cliente" class="col-form-label">Cliete:</label>
+            <input  name="cliente" class="form-control" type="text" id="cliente" placeholder="João Aquino Mota" required>
+          </div>
+          <div class="mb-3">
+            <label for="tamanho" class="col-form-label">Tamanho:</label>
+            <select name="tamanho" class="form-select" id="tamanho" aria-label="Default select example">
+              <option value="P" selected>P</option>
+              <option value="M">M</option>
+              <option value="G">G</option>
+              <option value="GG">GG</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="quantidade" class="col-form-label">Quantidade:</label>
+            <input name="quantidade" value="1" class="form-control" type="text" id="quantidade" placeholder="0" required>
+          </div>
+          <div class="mb-3">
+            <label for="parcelas" class="col-form-label">parcelas:</label>
+            <select name="parcelas" class="form-select" id="parcelas" aria-label="Default select example">
+              <option value="1" selected>1x</option>
+              <option value="2">2x</option>
+              <option value="3">3x</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="desconto" class="col-form-label">Desconto</label>
+            <input  name="desconto" class="form-control" type="text" id="desconto" placeholder="0.05" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button form="form_criar" type="submit" class="btn btn-primary">Criar</button>
+      </div>
+    </div>
+  </div>
+</div>  

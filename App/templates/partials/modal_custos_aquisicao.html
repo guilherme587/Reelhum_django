@@ -1,0 +1,94 @@
+<div class="modal fade" id="custo_aquisicao" tabindex="-1" aria-labelledby="custo_aquisicao" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Custos de:</h5>
+          <div class="fs-5">Atual: {{custos_aquisicao.custo_venda}}R$ - {{CA}}%</div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="form_custo_aquisicao" action="{% url 'custos_aquisicao' %}" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="form_frete" class="col-form-label">Frete</label>
+              <input  value="{{custos_aquisicao.frete}}" name="frete" class="form-control" type="text" id="form_frete" placeholder="01389BG" required>
+            </div>
+            <div class="mb-3">
+              <label for="form_hospedagem" class="col-form-label">Hospedagem</label>
+              <input  value="{{custos_aquisicao.hospedagem}}" name="hospedagem" class="form-control" type="text" id="form_hospedagem" placeholder="Biquini azul" required>
+            </div>
+            <div class="mb-3">
+              <label for="form_alimento" class="col-form-label">Alimentação</label>
+              <input  value="{{custos_aquisicao.alimento}}" name="alimento" class="form-control" type="text" id="form_alimento" placeholder="100.00R$" required>
+            </div>
+            <div class="mb-3">
+              <label for="form_luz" class="col-form-label">Luz</label>
+              <input  value="{{custos_aquisicao.luz}}" name="luz" class="form-control" type="text" id="form_luz" placeholder="100.00R$" required>
+            </div>
+            <div class="mb-3">
+              <label for="form_internet" class="col-form-label">Internet</label>
+              <input  value="{{custos_aquisicao.internet}}" name="internet" class="form-control" type="text" id="form_internet" placeholder="Marca A" required>
+            </div>
+            <div class="mb-3">
+                <label for="form_sacola" class="col-form-label">Sacolas</label>
+                <input  value="{{custos_aquisicao.sacola}}" name="sacola" class="form-control" type="text" id="form_sacola" placeholder="Marca A" required>
+            </div>
+            <div class="mb-3">
+                <label for="form_aluguel" class="col-form-label">Aluguel</label>
+                <input  value="{{custos_aquisicao.aluguel}}" name="aluguel" class="form-control" type="text" id="form_aluguel" placeholder="Marca A" required>
+            </div>
+            <div class="mb-3">
+                <label for="form_trafego_pago" class="col-form-label">Trafego Pago</label>
+                <input  value="{{custos_aquisicao.trafego_pago}}" name="trafego_pago" class="form-control" type="text" id="form_trafego_pago" placeholder="Marca A" required>
+            </div>
+            <div class="mb-3">
+                <label for="form_salario" class="col-form-label">Salario</label>
+                <input  value="{{custos_aquisicao.salario}}" name="salario" class="form-control" type="text" id="form_salario" placeholder="Marca A" required>
+            </div>
+            <div class="mb-3">
+                <label for="form_taxa_cartao" class="col-form-label">Taxa Cartao</label>
+                <input  value="{{custos_aquisicao.taxa_cartao}}" name="taxa_cartao" class="form-control" type="text" id="form_taxa_cartao" placeholder="Marca A" required>
+            </div>
+            <div class="mb-3">
+                <label for="form_ICMS" class="col-form-label">ICMS</label>
+                <input  value="{{custos_aquisicao.ICMS}}" name="ICMS" class="form-control" type="text" id="form_ICMS" placeholder="Marca A" required>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button form="form_custo_aquisicao" type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+<!-- <script>
+    var campoNumero = document.getElementById('form_valoraquisicao_editar');
+
+    // Adiciona um listener para o evento input
+    campoNumero.addEventListener('input', function(event) {
+        // Obtém o valor inserido pelo usuário
+        var valor = event.target.value;
+
+        // Verifica se o valor não é um número
+        if (isNaN(valor)) {
+            // Se não for um número, limpa o campo
+            event.target.value = '';
+        }
+    });
+    // Obtém o campo de entrada
+    var campoNumero = document.getElementById('form_quantidade');
+
+    // Adiciona um listener para o evento input
+    campoNumero.addEventListener('input', function(event) {
+        // Obtém o valor inserido pelo usuário
+        var valor = event.target.value;
+
+        // Verifica se o valor não é um número
+        if (isNaN(valor)) {
+            // Se não for um número, limpa o campo
+            event.target.value = '';
+        }
+    });
+</script> -->

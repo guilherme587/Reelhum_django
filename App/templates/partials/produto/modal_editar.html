@@ -1,0 +1,75 @@
+<div class="modal fade" id="editar_{{produto.id}}" tabindex="-1" aria-labelledby="editar_{{produto.id}}" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>{{produto.descricao}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="form_editar_produto_{{produto.id}}" action="{% url 'editar_produto' produto.id %}" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="form_referencia" class="col-form-label">Referência</label>
+              <input  value="{{produto.referencia}}" name="referencia" class="form-control" type="text" id="form_referencia" placeholder="01389BG">
+            </div>
+            <div class="mb-3">
+              <label for="form_descricao" class="col-form-label">Descricao</label>
+              <input  value="{{produto.descricao}}" name="descricao" class="form-control" type="text" id="form_descricao" placeholder="Biquini azul">
+            </div>
+            <div class="mb-3">
+              <label for="form_valoraquisicao_editar_{{produto.id}}" class="col-form-label">Valor Aquisicao</label>
+              <input  value="{{produto.valor_aquisicao}}" name="valoraquisicao" class="form-control" type="text" id="form_valoraquisicao_editar_{{produto.id}}" placeholder="100.00R$">
+            </div>
+            <div class="mb-3">
+              <label for="form_quantidade_{{produto.id}}" class="col-form-label">Quantidade</label>
+              <input  value="{{produto.quantidade}}" name="quantidade" class="form-control" type="text" id="form_quantidade_{{produto.id}}" placeholder="100.00R$">
+            </div>
+            <div class="mb-3">
+              <label for="form_fornecedor" class="col-form-label">Fornecedor</label>
+              <input  value="{{produto.fornecedor}}" name="fornecedor" class="form-control" type="text" id="form_fornecedor" placeholder="Marca A">
+            </div>
+            <div class="mb-3">
+              <label for="form_margemlucro" class="col-form-label">Margem Lucro</label>
+              <select name="margemlucro" id="form_margemlucro">
+                <option value=0>Sem Mar de Lucro</option>
+              </select>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button form="form_editar_produto_{{produto.id}}" type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+<script>
+    var campoNumero = document.getElementById('form_valoraquisicao_editar_{{produto.id}}');
+
+    // Adiciona um listener para o evento input
+    campoNumero.addEventListener('input', function(event) {
+        // Obtém o valor inserido pelo usuário
+        var valor = event.target.value;
+
+        // Verifica se o valor não é um número
+        if (isNaN(valor)) {
+            // Se não for um número, limpa o campo
+            event.target.value = '';
+        }
+    });
+    // Obtém o campo de entrada
+    var campoNumero = document.getElementById('form_quantidade_{{produto.id}}');
+
+    // Adiciona um listener para o evento input
+    campoNumero.addEventListener('input', function(event) {
+        // Obtém o valor inserido pelo usuário
+        var valor = event.target.value;
+
+        // Verifica se o valor não é um número
+        if (isNaN(valor)) {
+            // Se não for um número, limpa o campo
+            event.target.value = '';
+        }
+    });
+</script>

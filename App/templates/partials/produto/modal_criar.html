@@ -1,0 +1,45 @@
+<div class="modal fade" id="criar" tabindex="-1" aria-labelledby="criar" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="modal_update_create" action="{% url 'criar_produto' %}" method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="referencia" class="col-form-label">Referência</label>
+            <input  name="referencia" class="form-control" type="text" id="referencia" placeholder="01389BG">
+          </div>
+          <div class="mb-3">
+            <label for="descricao" class="col-form-label">Descricao</label>
+            <input  name="descricao" class="form-control" type="text" id="descricao" placeholder="Biquini azul">
+          </div>
+          <div class="mb-3">
+            <label for="valoraquisicao_criar" class="col-form-label">Valor Aquisicao</label>
+            <input  name="valoraquisicao" class="form-control" type="text" id="valoraquisicao_criar" placeholder="100.00R$">
+          </div>
+          <div class="mb-3">
+            <label for="quantidade" class="col-form-label">Quantidade</label>
+            <input  value="{{produto.quantidade}}" name="quantidade" class="form-control" type="text" id="quantidade" placeholder="0">
+          </div>
+          <div class="mb-3">
+            <label for="fornecedor" class="col-form-label">Fornecedor</label>
+            <input  name="fornecedor" class="form-control" type="text" id="fornecedor" placeholder="Marca A">
+          </div>
+          <div class="mb-3">
+            <label for="margemlucro" class="col-form-label">Margem Lucro</label>
+            <select name="margemlucro" id="margemlucro">
+              <option value=0>Sem Mar de Lucro</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button form="modal_update_create" type="submit" class="btn btn-primary">Criar</button>
+      </div>
+    </div>
+  </div>
+</div>  

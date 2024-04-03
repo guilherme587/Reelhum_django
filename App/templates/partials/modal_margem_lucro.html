@@ -1,0 +1,69 @@
+<div class="modal fade" id="margem_lucro" tabindex="-1" aria-labelledby="margem_lucro" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5>Margem Lucro de:</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="form_modal_margem_lucro" action="{% url 'margem_lucro' %}" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="form_praia" class="col-form-label">Praia:</label>
+              <input  value="{{margem_lucro.praia}}" name="praia" class="form-control" type="text" id="form_praia" placeholder="0.7" required>
+            </div>
+            <div class="mb-3">
+              <label for="form_casual" class="col-form-label">Casual:</label>
+              <input  value="{{margem_lucro.casual}}" name="casual" class="form-control" type="text" id="form_casual" placeholder="0.7" required>
+            </div>
+            <div class="mb-3">
+              <label for="form_intima" class="col-form-label">Intima:</label>
+              <input  value="{{margem_lucro.intima}}" name="intima" class="form-control" type="text" id="form_intima" placeholder="0.7" required>
+            </div>
+            <div class="mb-3">
+              <label for="form_fitness" class="col-form-label">Fitness:</label>
+              <input  value="{{margem_lucro.fitness}}" name="fitness" class="form-control" type="text" id="form_fitness" placeholder="0.7" required>
+            </div>
+            <div class="mb-3">
+              <label for="form_jeans" class="col-form-label">Jeans:</label>
+              <input  value="{{margem_lucro.jeans}}" name="jeans" class="form-control" type="text" id="form_jeans" placeholder="0.7" Jequired>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button form="form_modal_margem_lucro" type="submit" class="btn btn-primary">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+<!-- <script>
+    var campoNumero = document.getElementById('form_valoraquisicao_editar');
+
+    // Adiciona um listener para o evento input
+    campoNumero.addEventListener('input', function(event) {
+        // Obtém o valor inserido pelo usuário
+        var valor = event.target.value;
+
+        // Verifica se o valor não é um número
+        if (isNaN(valor)) {
+            // Se não for um número, limpa o campo
+            event.target.value = '';
+        }
+    });
+    // Obtém o campo de entrada
+    var campoNumero = document.getElementById('form_quantidade');
+
+    // Adiciona um listener para o evento input
+    campoNumero.addEventListener('input', function(event) {
+        // Obtém o valor inserido pelo usuário
+        var valor = event.target.value;
+
+        // Verifica se o valor não é um número
+        if (isNaN(valor)) {
+            // Se não for um número, limpa o campo
+            event.target.value = '';
+        }
+    });
+</script> -->
